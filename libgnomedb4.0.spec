@@ -1,16 +1,16 @@
 %define pkgname	libgnomedb
+%define api 4.0
+%define name	%{pkgname}%{api}
 %define	major	4
-%define name	gnome-db2.0
-%define oname gnome-db
-%define api 3.0
+%define oname gnomedb
 %define libname	%mklibname %{oname}%{api}_ %major 
 %define libnamedev %mklibname -d %{oname}%{api}
-%define gdaver 3.1.2
+%define gdaver 3.99.2
 
 Summary:	GNOME DB
 Name:		%name
-Version: 3.1.2
-Release: %mkrel 6
+Version: 3.99.6
+Release: %mkrel 1
 License:	GPLv2+ and LGPLv2+
 Group: 		Databases
 URL:		http://www.gnome-db.org/
@@ -19,7 +19,7 @@ Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%{pkgname}/%{pkgname}-%{version}.
 Patch0:		libgnomedb-3.1.2-fixunderlinking.patch
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:	libgnomeui2-devel
-BuildRequires:	gda2.0-devel >= %gdaver
+BuildRequires:	libgda4.0-devel >= %gdaver
 BuildRequires:	scrollkeeper
 BuildRequires:	gtk-doc
 BuildRequires:	libglade2.0-devel
@@ -28,8 +28,6 @@ BuildRequires:  evolution-data-server-devel
 BuildRequires:	glade3-devel >= 3.1.5
 BuildRequires:	libgoocanvas-devel >= 0.9
 BuildRequires:	libgraphviz-devel
-BuildRequires:	ImageMagick
-BuildRequires:  perl-XML-Parser
 BuildRequires:  desktop-file-utils
 BuildRequires:  intltool
 
@@ -58,8 +56,6 @@ Summary:	GNOME DB Development
 Group: 		Development/Databases
 Requires:	%{libname} = %{version}
 Provides:	%{name}-devel = %{version}
-Provides:	lib%{name}-devel = %{version}
-Obsoletes: %mklibname -d %{oname}%{api}_ %major
 Requires(post):		scrollkeeper
 Requires(postun):		scrollkeeper
 
@@ -75,10 +71,11 @@ you develop GNOME-DB applications.
 
 %prep
 %setup -q -n %{pkgname}-%{version}
-%patch0 -p1 -b .fixunderlinking
+#%patch0 -p1 -b .fixunderlinking
 
 #needed by patch0
-autoreconf
+#libtoolize --copy --force
+#autoreconf
 
 %build
 %configure2_5x
@@ -89,22 +86,10 @@ rm -rf $RPM_BUILD_ROOT
 
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std
 
-#replace icon with correct name
-sed -i -e 's/^Icon=gnome-db$/Icon=gnome-db2/g' $RPM_BUILD_ROOT%{_datadir}/applications/database-properties-3.0.desktop
-
 desktop-file-install --vendor="" \
-  --remove-category="Application" \
-  --remove-category="AdvancedSettings" \
   --add-category="GNOME" \
   --add-category="GTK" \
   --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/*
-
-
-# icons
-mkdir -p $RPM_BUILD_ROOT%{_iconsdir} $RPM_BUILD_ROOT%{_miconsdir}
-install -D -m 644 gnome-db.png $RPM_BUILD_ROOT%{_liconsdir}/gnome-db2.png
-convert -geometry 32x32 gnome-db.png $RPM_BUILD_ROOT%{_iconsdir}/gnome-db2.png
-convert -geometry 16x16 gnome-db.png $RPM_BUILD_ROOT%{_miconsdir}/gnome-db2.png
 
 %{find_lang} %{pkgname}-%api --with-gnome
 
@@ -119,11 +104,11 @@ rm -rf $RPM_BUILD_ROOT
 %if %mdkversion < 200900
 %post
 %{update_menus}
-%post_install_gconf_schemas libgnomedb-3.0
+%post_install_gconf_schemas libgnomedb-%{api}
 %endif
 
 %preun
-%preun_uninstall_gconf_schemas libgnomedb-3.0
+%preun_uninstall_gconf_schemas libgnomedb-%{api}
 
 %if %mdkversion < 200900
 %postun
@@ -151,7 +136,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{pkgname}-%api.lang
 %defattr(-, root, root)
 %doc AUTHORS COPYING NEWS
-%_sysconfdir/gconf/schemas/libgnomedb-3.0.schemas
+%_sysconfdir/gconf/schemas/libgnomedb-%{api}.schemas
 %{_bindir}/*
 %{_datadir}/pixmaps/*
 %_libdir/glade3/modules/libgladegnomedb.so
@@ -159,13 +144,10 @@ rm -rf $RPM_BUILD_ROOT
 %dir %_datadir/gnome-db-%{api}/
 %_datadir/gnome-db-%{api}/*.xml
 %_datadir/gnome-db-%{api}/*.glade
-%_datadir/applications/database-properties-3.0.desktop
+%_datadir/applications/database-properties-%{api}.desktop
 %{_libdir}/libglade/2.0/*
 %dir %{_libdir}/gnome-db-%{api}/
 %{_libdir}/gnome-db-%{api}/plugins/
-%{_iconsdir}/*.png
-%{_liconsdir}/*.png
-%{_miconsdir}/*.png
 
 %files -n %{libname}
 %defattr(-, root, root)
