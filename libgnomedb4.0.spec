@@ -22,6 +22,7 @@ BuildRequires:	libgnomeui2-devel
 BuildRequires:	libgda4.0-devel >= %gdaver
 BuildRequires:	scrollkeeper
 BuildRequires:	gtk-doc
+BuildRequires:	docbook-dtd412-xml
 BuildRequires:	libglade2.0-devel
 BuildRequires:	gtksourceview1-devel
 BuildRequires:  evolution-data-server-devel
