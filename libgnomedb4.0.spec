@@ -15,8 +15,7 @@ License:	GPLv2+ and LGPLv2+
 Group: 		Databases
 URL:		http://www.gnome-db.org/
 Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%{pkgname}/%{pkgname}-%{version}.tar.bz2
-# (fc) 3.1.2-3mdv fix underlinking
-Patch0:		libgnomedb-3.1.2-fixunderlinking.patch
+Patch1:		libgnomedb-3.99.6-fix-str-fmt.patch
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:	libgnomeui2-devel
 BuildRequires:	libgda4.0-devel >= %gdaver
@@ -72,11 +71,7 @@ you develop GNOME-DB applications.
 
 %prep
 %setup -q -n %{pkgname}-%{version}
-#%patch0 -p1 -b .fixunderlinking
-
-#needed by patch0
-#libtoolize --copy --force
-#autoreconf
+%patch1 -p0 -b .str
 
 %build
 %configure2_5x
