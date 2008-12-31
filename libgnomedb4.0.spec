@@ -5,12 +5,12 @@
 %define oname gnomedb
 %define libname	%mklibname %{oname}%{api}_ %major 
 %define libnamedev %mklibname -d %{oname}%{api}
-%define gdaver 3.99.2
+%define gdaver 3.99.7
 
 Summary:	GNOME DB
 Name:		%name
-Version: 3.99.6
-Release: %mkrel 2
+Version: 3.99.7
+Release: %mkrel 1
 License:	GPLv2+ and LGPLv2+
 Group: 		Databases
 URL:		http://www.gnome-db.org/
