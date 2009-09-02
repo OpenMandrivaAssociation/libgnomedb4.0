@@ -32,6 +32,7 @@ BuildRequires:	libgoocanvas-devel >= 0.9
 BuildRequires:	libgraphviz-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  intltool
+BuildRequires:  gnome-common
 
 %description
 Gnome DB is a frontend to the GDA architecture, being developed as part
