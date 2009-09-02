@@ -6,16 +6,18 @@
 %define libname	%mklibname %{oname}%{api}_ %major 
 %define libnamedev %mklibname -d %{oname}%{api}
 %define gdaver 3.99.7
+%define git 20090503
 
 Summary:	GNOME DB
 Name:		%name
-Version: 3.99.7
-Release: %mkrel 1
+Version: 3.99.8
+Release: %mkrel 0.%git.1
 License:	GPLv2+ and LGPLv2+
 Group: 		Databases
 URL:		http://www.gnome-db.org/
-Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%{pkgname}/%{pkgname}-%{version}.tar.bz2
-Patch1:		libgnomedb-3.99.6-fix-str-fmt.patch
+Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%{pkgname}/%{pkgname}-%git.tar.bz2
+Patch1:		libgnomedb-fix-str-fmt.patch
+Patch2:		libgnomedb-remove-duplicated-header.patch
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:	libgnomeui2-devel
 BuildRequires:	libgda4.0-devel >= %gdaver
@@ -70,8 +72,10 @@ you develop GNOME-DB applications.
 
 
 %prep
-%setup -q -n %{pkgname}-%{version}
-%patch1 -p0 -b .str
+%setup -q -n %{pkgname}
+%patch1 -p1 -b .str
+%patch2 -p1
+./autogen.sh
 
 %build
 %configure2_5x
@@ -138,6 +142,7 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/glade3/modules/libgladegnomedb.so
 %_datadir/glade3/
 %dir %_datadir/gnome-db-%{api}/
+%_datadir/gnome-db-%{api}/dtd
 %_datadir/gnome-db-%{api}/*.xml
 %_datadir/gnome-db-%{api}/*.glade
 %_datadir/applications/database-properties-%{api}.desktop
