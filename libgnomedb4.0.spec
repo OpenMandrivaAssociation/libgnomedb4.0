@@ -46,6 +46,8 @@ This package contains the core components of GNOME-DB.
 Summary:	GNOME DB libraries
 Group: 		System/Libraries
 Requires: %name >= %version
+#gw /usr/lib/glade3/modules/libgladegnomedb.so
+Conflicts: gnome-db2.0
 
 %description -n %{libname}
 Gnome DB is a frontend to the GDA architecture, being developed as part
