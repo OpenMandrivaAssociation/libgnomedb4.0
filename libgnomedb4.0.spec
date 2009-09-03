@@ -29,7 +29,7 @@ BuildRequires:	gtksourceview1-devel
 BuildRequires:  evolution-data-server-devel
 BuildRequires:	glade3-devel >= 3.1.5
 BuildRequires:	libgoocanvas-devel >= 0.9
-BuildRequires:	libgraphviz-devel
+BuildRequires:	graphviz-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  intltool
 BuildRequires:  gnome-common
