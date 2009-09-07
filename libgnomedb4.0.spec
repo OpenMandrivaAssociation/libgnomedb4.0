@@ -47,7 +47,7 @@ Summary:	GNOME DB libraries
 Group: 		System/Libraries
 Requires: %name >= %version
 #gw /usr/lib/glade3/modules/libgladegnomedb.so
-Conflicts: gnome-db2.0
+Conflicts: gnome-db2.0 < 3.1.2-10
 
 %description -n %{libname}
 Gnome DB is a frontend to the GDA architecture, being developed as part
