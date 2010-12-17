@@ -11,7 +11,7 @@
 Summary:	GNOME DB
 Name:		%name
 Version: 3.99.8
-Release: %mkrel 0.%git.2
+Release: %mkrel 0.%git.3
 License:	GPLv2+ and LGPLv2+
 Group: 		Databases
 URL:		http://www.gnome-db.org/
