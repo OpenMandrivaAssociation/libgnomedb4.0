@@ -85,24 +85,24 @@ you develop GNOME-DB applications.
 %make
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std
 
 desktop-file-install --vendor="" \
   --add-category="GNOME" \
   --add-category="GTK" \
-  --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/*
+  --dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
 
 %{find_lang} %{pkgname}-%api --with-gnome
 
 # remove unpackaged files
-rm -rf $RPM_BUILD_ROOT%{_libdir}/libglade/2.0/*.{la,a} \
-       $RPM_BUILD_ROOT%{_libdir}/glade3/modules/*a \
-       $RPM_BUILD_ROOT%{_libdir}/libgnomedb/plugins/*a
+rm -rf %{buildroot}%{_libdir}/libglade/2.0/*.{la,a} \
+       %{buildroot}%{_libdir}/glade3/modules/*a \
+       %{buildroot}%{_libdir}/libgnomedb/plugins/*a
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %if %mdkversion < 200900
 %post
