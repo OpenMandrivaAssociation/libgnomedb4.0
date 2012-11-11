@@ -1,0 +1,23 @@
+diff --git a/ChangeLog b/ChangeLog
+index 25b848a..0cc6887 100644
+--- a/ChangeLog
++++ b/ChangeLog
+@@ -1,5 +1,6 @@
+ 2009-09-02  Götz Waschk  <gwaschk@gnome.org>
+ 
++	* libgnomedb/Makefile.am: remove duplicated header file (bug #593918)
+ 	* control-center/dsn-properties-dialog.c:
+ 	* extra/demos/ddl_queries.c:
+ 	* libgnomedb-graph/gnome-db-canvas.c:
+diff --git a/libgnomedb/Makefile.am b/libgnomedb/Makefile.am
+index 956cade..5358140 100644
+--- a/libgnomedb/Makefile.am
++++ b/libgnomedb/Makefile.am
+@@ -39,7 +39,6 @@ gnomedb_public_headers = \
+ 	gnome-db-dsn-editor.h \
+ 	gnome-db-provider-auth-editor.h \
+ 	gnome-db-provider-spec-editor.h \
+-	gnome-db-enum-types.h \
+ 	gnome-db-enums.h \
+ 	gnome-db-find-dialog.h \
+ 	gnome-db-form.h \
