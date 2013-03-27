@@ -11,7 +11,7 @@
 Summary:	GNOME DB
 Name:		%{pkgname}%{api}
 Version:	3.99.8
-Release:	0.%git.7
+Release:	0.%git.8
 License:	GPLv2+ and LGPLv2+
 Group: 		Databases
 URL:		http://www.gnome-db.org/
@@ -28,7 +28,7 @@ BuildRequires:	pkgconfig(gtksourceview-1.0)
 BuildRequires:  pkgconfig(evolution-data-server-1.2)
 BuildRequires:	pkgconfig(gladeui-1.0)
 BuildRequires:	pkgconfig(goocanvas)
-BuildRequires:	pkgconfig(libgraph)
+BuildRequires:	graphviz-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  intltool
 BuildRequires:  gnome-common
