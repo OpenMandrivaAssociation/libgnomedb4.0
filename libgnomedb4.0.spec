@@ -14,7 +14,7 @@ Version:	3.99.8
 Release:	0.%git.8
 License:	GPLv2+ and LGPLv2+
 Group: 		Databases
-URL:		http://www.gnome-db.org/
+URL:		https://www.gnome-db.org/
 Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%{pkgname}/%{pkgname}-%git.tar.bz2
 Patch1:		libgnomedb-fix-str-fmt.patch
 Patch2:		libgnomedb-remove-duplicated-header.patch
